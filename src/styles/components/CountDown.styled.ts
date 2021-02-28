@@ -1,8 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+type CountDownButtonProps = {
+  isActive?: boolean;
+  hasFinished?: boolean;
+}
 
 export const Container = styled.div`
 `;
-
 
 export const CountDownElement = styled.div`
   display: flex;
@@ -43,7 +47,38 @@ export const CountDownElement = styled.div`
   }
 `;
 
-export const StartCountDownButton = styled.button`
+const fineshadeCSS =  css`
+  background: var(--white);
+  color: var(--text);
+  cursor: not-allowed;
+
+  border-bottom: 4px solid var(--green);
+  
+  img {
+    margin-left: 16px;
+  }
+`;
+
+const activeCSS = css`
+  background: var(--blue);
+  color: var(--white);
+
+  &:hover {
+    background: var(--blue-dark);
+  }
+`;
+
+const notActiveCSS = css`
+  background: var(--white);
+  color: var(--title);
+
+  &:hover {
+    background: var(--red);
+    color: var(--white);
+  }
+`;
+
+export const CountDownButton = styled.button<CountDownButtonProps>`
   width: 100%;
   height: 5rem;
 
@@ -55,14 +90,12 @@ export const StartCountDownButton = styled.button`
   border: 0;
   border-radius: 5px;
 
-  background: var(--blue);
-  color: var(--white);
-
   font-size: 1.25rem;
   font-weight: 600;
 
-  &:hover {
-    background: var(--blue-dark);
+  ${({ isActive, disabled}) =>
+    disabled ? fineshadeCSS : 
+    ( isActive ? activeCSS : notActiveCSS )
   }
 
   transition: background 0.2s;

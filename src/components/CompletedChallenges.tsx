@@ -1,10 +1,13 @@
-import { Container } from '../styles/components/CompletedChallenges';
+import { useChallanges } from '../hooks/useChallanges';
+import { Container } from '../styles/components/CompletedChallenges.styled';
 
 export default function CompletedChallenges() {
+  const { challangesCompleted } = useChallanges();
+
   return (
     <Container>
       <span>Desafios Completos</span>
-      <span>5</span>
+      <span>{challangesCompleted}</span>
     </Container>
   );  
 }

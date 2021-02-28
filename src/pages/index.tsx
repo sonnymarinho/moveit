@@ -1,9 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
-import { ExperienceBar, Profile, CountDown } from '../components';
+import { ExperienceBar, Profile, CountDown, ChallangeBox } from '../components';
 import CompletedChallenges from '../components/CompletedChallenges';
 
 import { Container, Content, LeftContainer, RightContainer } from '../styles/pages/Home.style';
+import { CountdownProvider } from '../hooks/useCountdown';
 
 export default function Home() {
   return (
@@ -13,17 +14,19 @@ export default function Home() {
       </Head>
       <ExperienceBar />
 
-      <Content>
-        <LeftContainer>
-          <Profile />
-          <CompletedChallenges />
-          <CountDown />
-        </LeftContainer>
+      <CountdownProvider>
+        <Content>
+          <LeftContainer>
+            <Profile />
+            <CompletedChallenges />
+            <CountDown />
+          </LeftContainer>
 
-        <RightContainer>
-
-        </RightContainer>
-      </Content>
+          <RightContainer>
+            <ChallangeBox />
+          </RightContainer>
+        </Content>
+      </CountdownProvider>
     </Container>
   )
 }

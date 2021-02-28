@@ -1,14 +1,18 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { useState } from 'react';
-import { Container, CountDownElement, StartCountDownButton } from '../styles/components/CountDown';
+import { useCountdown } from '../hooks/useCountdown';
+import { Container, CountDownElement, CountDownButton } from '../styles/components/CountDown.styled';
 
 
 export default function CountDown() {
-  const [time, setTime] = useState(25*60);
-  const [isActive, setIsActive] = useState(false);
 
-  const minutes = useMemo(() => Math.floor(time / 60), [ time ]);
-  const seconds = useMemo(() => time % 60, [ time ]);
+  const { 
+    minutes,
+    seconds,
+    hasFinished,
+    isActive,
+    startCountDown,
+    resetCountDown
+  } = useCountdown();
 
   const [minuteLeft, minuteRight] = useMemo(
     () => String(minutes).padStart(2, '0').split('')
@@ -17,21 +21,6 @@ export default function CountDown() {
   const [secondLeft, secondRight] = useMemo(
     () => String(seconds).padStart(2, '0').split('')
     , [ seconds ]);
-
-  const startCountDown = useCallback(() => {
-      setIsActive(true);
-    },[],
-  );
-
-  useEffect(() => {
-    
-    if (isActive && time > 0) {
-      setTimeout(() => {
-        setTime(time -1);
-      }, 1000)
-    }
-
-  }, [isActive, time]);
 
   return (
     <Container>
@@ -45,12 +34,24 @@ export default function CountDown() {
           <span>{secondLeft}</span>
           <span>{secondRight}</span>
         </div>
-      </CountDownElement>
-      <StartCountDownButton
-        onClick={startCountDown}
-      >
-        Iniciar um ciclo
-      </StartCountDownButton>
+        </CountDownElement>
+
+        { hasFinished ? (
+          <CountDownButton disabled>
+            Ciclo Encerrado <img src="icons/check_circle.svg" alt="Check"/>
+          </CountDownButton>
+        ): (
+          isActive ?
+          (
+            <CountDownButton onClick={resetCountDown}>
+              Encerrar um ciclo
+            </CountDownButton>
+          ) : (
+            <CountDownButton isActive onClick={startCountDown}>
+              Iniciar um ciclo
+            </CountDownButton>
+          )
+        )}
     </Container>
   );
 }
