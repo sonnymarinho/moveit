@@ -56,7 +56,7 @@ function ChallangesProvider ({ children }: ChallangesContextProps) {
         new Audio('/notification.mp3').play();
       }
     },
-    [],
+    [challanges],
   );
 
     const resetChallange = useCallback(
@@ -66,10 +66,11 @@ function ChallangesProvider ({ children }: ChallangesContextProps) {
       [],
     );
     
-    const experienceToNextLevel = useMemo(() => Math.pow((level + 1) * EXPERIENCE_FACTOR, 2), []);
+    const experienceToNextLevel = useMemo(() => Math.pow((level + 1) * EXPERIENCE_FACTOR, 2), [level]);
     
     const completeChallange = useCallback(
       () => {
+
         if(!activeChallange) return;
 
         const { amount } = activeChallange

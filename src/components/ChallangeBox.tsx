@@ -12,7 +12,7 @@ export default function ChallangeBox () {
       completeChallange();
       resetCountDown();
     },
-    [],
+    [completeChallange, resetCountDown],
   );
 
   const handleChallangesFailed = useCallback(
@@ -20,7 +20,7 @@ export default function ChallangeBox () {
       resetChallange();
       resetCountDown();
     },
-    [],
+    [resetChallange, resetCountDown],
   );
 
   return (
