@@ -6,9 +6,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <GlobalStyles />
-      <ChallangesProvider>
-        <Component {...pageProps} />
-      </ChallangesProvider>
+      <Component {...pageProps} />
     </>
   )
 }
