@@ -6,8 +6,8 @@
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/sonnymarinho/move.it">
 
-  <a href="https://www.linkedin.com/in/sonnymarinho/">
-    <img alt="Made by" src="https://img.shields.io/badge/made%20by-Sonny%Marinho-gree">
+  <img alt="linkedin" src="https://img.shields.io/badge/-Sonny%20Marinho-378fe9?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/sonnymarinho">
+    <img alt="Made by" src="https://img.shields.io/badge/made%20by-Sonny%20Marinho-gree">
   </a>
   
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/sonnymarinho/move.it">
